@@ -1,5 +1,4 @@
-import threading
-import time
+# client.py
 import xmlrpc.client
 
 # Create an XML-RPC client
@@ -31,29 +30,33 @@ def get_inventory():
     for blood_type, quantity in inventory.items():
         print(f"{blood_type}: {quantity} units")
 
-def hospital_worker(operation, blood_type, quantity):
-    if operation == 'add':
-        add_inventory(blood_type, quantity)
-    elif operation == 'remove':
-        remove_inventory(blood_type, quantity)
-    elif operation == 'update':
-        update_inventory(blood_type, quantity)
-
-def main():
-    hospitals = [
-        ("add", "O+", 10),
-        ("remove", "AB-", 5),
-        ("update", "A+", 15)
-    ]
-
-    threads = []
-    for operation, blood_type, quantity in hospitals:
-        thread = threading.Thread(target=hospital_worker, args=(operation, blood_type, quantity))
-        thread.start()
-        threads.append(thread)
-
-    for thread in threads:
-        thread.join()
-
 if __name__ == "__main__":
-    main()
+    while True:
+        print("\nBlood Bank System Menu:")
+        print("1. Add inventory")
+        print("2. Remove inventory")
+        print("3. Update inventory")
+        print("4. View inventory")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            blood_type = input("Enter blood type: ")
+            quantity = int(input("Enter quantity to add: "))
+            add_inventory(blood_type, quantity)
+        elif choice == '2':
+            blood_type = input("Enter blood type: ")
+            quantity = int(input("Enter quantity to remove: "))
+            remove_inventory(blood_type, quantity)
+        elif choice == '3':
+            blood_type = input("Enter blood type: ")
+            quantity = int(input("Enter new quantity: "))
+            update_inventory(blood_type, quantity)
+        elif choice == '4':
+            get_inventory()
+        elif choice == '5':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
