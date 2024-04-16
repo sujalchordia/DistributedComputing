@@ -6,9 +6,10 @@ function App() {
   const [inventory, setInventory] = useState({});
   const [bloodType, setBloodType] = useState('');
   const [quantity, setQuantity] = useState('');
+  const [serverTime, setServerTime] = useState('');
 
   useEffect(() => {
-    fetchInventory();
+    fetchInventoryAndServerTime();
   }, []);
 
   const setQty = (value) => {
@@ -19,12 +20,13 @@ function App() {
     }
   };
 
-  const fetchInventory = async () => {
+  const fetchInventoryAndServerTime = async () => {
     try {
       const response = await axios.get('http://localhost:5000/inventory');
-      setInventory(response.data);
+      setInventory(response.data.inventory);
+      setServerTime(response.data.server_time);
     } catch (error) {
-      console.error('Error fetching inventory:', error);
+      console.error('Error fetching inventory and server time:', error);
     }
   }
   
@@ -41,7 +43,7 @@ function App() {
         blood_type: bloodType,
         quantity: quantity
       });
-      fetchInventory();
+      fetchInventoryAndServerTime();
     } catch (error) {
       console.error('Error adding blood:', error);
     }
@@ -53,7 +55,7 @@ function App() {
         blood_type: bloodType,
         quantity: quantity
       });
-      fetchInventory();
+      fetchInventoryAndServerTime();
     } catch (error) {
       console.error('Error removing blood:', error);
       if (error.response && error.response.data && error.response.data.error) {
@@ -80,6 +82,7 @@ function App() {
 
       <div className='cont'>
         <h2 className="heading">Inventory</h2>
+        <p>Server Time: {serverTime}</p>
         <ul className="inventory-list">
           {Object.keys(inventory).map((bloodType, index) => (
             <li key={index} className="inventory-item">{bloodType}: {inventory[bloodType]}</li>
