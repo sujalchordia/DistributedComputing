@@ -6,12 +6,24 @@ const bodyParser = require('body-parser');
 const { PythonShell } = require('python-shell');
 const app = express();
 const PORT = process.env.PORT || 3001;
+const { v4: uuidv4 } = require('uuid');
 
 // Middleware
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS for all routes
 
 // Routes
+app.get('/init-thread', (req, res) => {
+  // Generate a unique thread ID for the client session
+  const threadId = uuidv4();
+
+  // Set the thread ID in a cookie (optional, you can also send it in the response body)
+  res.cookie('threadId', threadId);
+
+  // Respond to the client with the thread ID
+  res.json({ threadId });
+});
+
 app.get('/api/time', (req, res) => {
   res.json({ time: new Date().toISOString() });
 });
