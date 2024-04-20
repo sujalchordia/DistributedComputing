@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "bloodGroup": "A+",
+        "quantity": 100
+    },
+    {
+        "id": 2,
+        "bloodGroup": "B+",
+        "quantity": "37"
+    },
+    {
+        "id": 3,
+        "bloodGroup": "AB+",
+        "quantity": 75
+    },
+    {
+        "id": 4,
+        "bloodGroup": "O+",
+        "quantity": 80
+    },
+    {
+        "id": 5,
+        "bloodGroup": "A-",
+        "quantity": 60
+    },
+    {
+        "id": 6,
+        "bloodGroup": "B-",
+        "quantity": 30
+    },
+    {
+        "id": 7,
+        "bloodGroup": "AB-",
+        "quantity": 45
+    },
+    {
+        "id": 8,
+        "bloodGroup": "O-",
+        "quantity": 70
+    }
+]
