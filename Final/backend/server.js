@@ -13,6 +13,19 @@ app.use(bodyParser.json());
 app.use(cors()); // Enable CORS for all routes
 
 // Routes
+//Mutual exclusion
+let exclusiveThreadId = null;
+app.get('/check-access', (req, res) => {
+  res.json({ threadId: exclusiveThreadId });
+})
+
+app.post('/grant-access', (req, res) => { 
+  const {threadId} = req.body;
+  console.log(threadId);  
+  exclusiveThreadId = threadId; // Grant exclusive access to the client with the provided threadId
+  res.json({ threadId: exclusiveThreadId });
+});
+
 app.get('/init-thread', (req, res) => {
   // Generate a unique thread ID for the client session
   const threadId = uuidv4();

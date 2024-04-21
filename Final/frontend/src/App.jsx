@@ -21,11 +21,11 @@ function App() {
   };
   return (
     <div className="flex flex-col justify-center items-center h-screen">
-      <div className="max-w-md w-full p-12 bg-blue-200 shadow-lg flex">
-        <div className="w-1/2 pr-4">
+      <div className="w-3/5 p-12 bg-blue-200 shadow-lg flex">
+        <div className="w-1/3 pr-4">
           <InventoryList />
         </div>
-        <div className="w-1/2 pl-4">
+        <div className="w-2/3 pl-4">
           <h1 className="text-2xl font-bold mb-4">Blood Bank Inventory Management</h1>
           <InventoryForm />
         </div>
