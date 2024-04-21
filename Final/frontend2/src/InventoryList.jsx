@@ -11,7 +11,7 @@ function InventoryList() {
         // Fetch inventory data from the backend
         const fetchInventory = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/api/inventory');
+                const response = await axios.get('http://localhost:3002/api/inventory');
                 setInventory(response.data.inventory);
                 setServerNumber(response.data.serverNumber);
             } catch (error) {
@@ -36,7 +36,7 @@ function InventoryList() {
     // Fetch server time
     const fetchServerTime = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/time');
+            const response = await axios.get('http://localhost:3002/api/time');
             setServerTime(response.data.time);
         } catch (error) {
             console.error('Error fetching server time:', error);

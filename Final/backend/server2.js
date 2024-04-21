@@ -12,7 +12,7 @@ const { v4: uuidv4 } = require('uuid');
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS for all routes
 
-const serverNumber = 1;
+const serverNumber = 2;
 
 // Routes
 //Mutual exclusion
@@ -48,8 +48,8 @@ app.get('/api/inventory', (req, res) => {
     try {
     // Read inventory data from the file
     const inventoryData = fs.readFileSync('inventory.txt', 'utf8');
-      // Parse the JSON data
-        const inventory = JSON.parse(inventoryData);
+    // Parse the JSON data
+        const inventory = JSON.parse(inventoryData)
     // Send the inventory data as response
     res.json({inventory, serverNumber});
     } catch (err) {
@@ -130,6 +130,6 @@ PythonShell.run(`${protocol}_script.py`, options, (err, result) => {
 };
 
 // Start server
-app.listen(3001, () => {
-console.log(`Server is running on http://localhost:${3001}`);
+app.listen(3002, () => {
+console.log(`Server is running on http://localhost:${3002}`);
 });

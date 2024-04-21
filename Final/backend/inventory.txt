@@ -2,7 +2,7 @@
     {
         "id": 1,
         "bloodGroup": "A+",
-        "quantity": 100
+        "quantity": "35"
     },
     {
         "id": 2,
@@ -27,7 +27,7 @@
     {
         "id": 6,
         "bloodGroup": "B-",
-        "quantity": 30
+        "quantity": "67"
     },
     {
         "id": 7,
