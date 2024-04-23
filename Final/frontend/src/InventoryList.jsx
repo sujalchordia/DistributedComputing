@@ -20,7 +20,7 @@ function InventoryList() {
         };
 
         fetchInventory();
-
+        
         // Set up interval to fetch server time every second
         const interval = setInterval(() => {
             fetchServerTime(); // Fetch server time every second

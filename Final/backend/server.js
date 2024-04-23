@@ -22,21 +22,16 @@ res.json({ threadId: exclusiveThreadId });
 })
 
 app.post('/grant-access', (req, res) => { 
-const {threadId} = req.body;
-console.log(threadId);  
-exclusiveThreadId = threadId; // Grant exclusive access to the client with the provided threadId
-res.json({ threadId: exclusiveThreadId });
+    const {threadId} = req.body;
+    console.log(threadId);  
+    exclusiveThreadId = threadId; // Grant exclusive access to the client with the provided threadId
+    res.json({ threadId: exclusiveThreadId });
 });
 
 app.get('/init-thread', (req, res) => {
-// Generate a unique thread ID for the client session
-const threadId = uuidv4();
-
-// Set the thread ID in a cookie (optional, you can also send it in the response body)
-res.cookie('threadId', threadId);
-
-// Respond to the client with the thread ID
-res.json({ threadId });
+    const threadId = uuidv4();
+    res.cookie('threadId', threadId);
+    res.json({ threadId });
 });
 
 app.get('/api/time', (req, res) => {
@@ -67,13 +62,13 @@ const options = {
     args: ['addInventory', JSON.stringify(newItem)]
 };
 runPythonScript(protocol, options, (error, result) => {
-    if (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-    } else {
-    res.json(result);
-    }
-});
+        if (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal server error' });
+        } else {
+            res.json(result);
+        }
+    });
 });
 
 // Update inventory
