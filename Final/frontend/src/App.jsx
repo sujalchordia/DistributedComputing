@@ -5,7 +5,7 @@ import InventoryList from './InventoryList';
 function App() {
   var [threadID, setThreadID] = useState(null);
   window.onload = () => {
-    fetch('http://localhost:3001/init-thread')
+    fetch('https://mumbai-server.onrender.com/init-thread')
       .then(response => response.json())
       .then(data => {
         // Store the thread ID in local storage

@@ -11,7 +11,7 @@ function InventoryList() {
         // Fetch inventory data from the backend
         const fetchInventory = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/api/inventory');
+                const response = await axios.get('https://mumbai-server.onrender.com/api/inventory');
                 setInventory(response.data.inventory);
                 setServerNumber(response.data.serverNumber);
             } catch (error) {
@@ -27,7 +27,7 @@ function InventoryList() {
         }, 1000);
 
         fetchServerTime();
-
+        
         return () => clearInterval(interval);
     }, [clientTime]);
 
@@ -36,7 +36,7 @@ function InventoryList() {
     // Fetch server time
     const fetchServerTime = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/time');
+            const response = await axios.get('https://mumbai-server.onrender.com/api/time');
             setServerTime(response.data.time);
         } catch (error) {
             console.error('Error fetching server time:', error);

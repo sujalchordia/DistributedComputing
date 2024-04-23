@@ -129,7 +129,7 @@ PythonShell.run(`${protocol}_script.py`, options, (err, result) => {
 });
 };
 
-// Start server
-app.listen(3003, () => {
-console.log(`Server is running on http://localhost:3003`);
+const port = process.env.PORT || 3003;
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });

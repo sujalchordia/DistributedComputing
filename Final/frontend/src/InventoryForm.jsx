@@ -13,7 +13,7 @@ function InventoryForm() {
     useEffect(() => {
         const fetchThreadId = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/check-access');
+                const response = await axios.get('https://mumbai-server.onrender.com/check-access');
                 setThreadId(response.data.threadId);
             } catch (error) {
                 console.error('Error fetching thread ID:', error);
@@ -46,14 +46,14 @@ function InventoryForm() {
             } else if (action === 'delete') {
                 endpoint = 'delete';
             }
-            let exlcthread = await axios.get('http://localhost:3001/check-access');
+            let exlcthread = await axios.get('https://mumbai-server.onrender.com/check-access');
             setThreadId(exlcthread.data.threadId);
             if (threadId === null || threadId === localStorage.getItem('threadId')) {
                 try {
-                    const resp = await axios.post('http://localhost:3001/grant-access', { threadId: localStorage.getItem('threadId') });
+                    const resp = await axios.post('https://mumbai-server.onrender.com/grant-access', { threadId: localStorage.getItem('threadId') });
                     console.log('Response:', resp.data);
 
-                    const response = await axios.post(`http://localhost:3001/api/inventory/${endpoint}`, {
+                    const response = await axios.post(`https://mumbai-server.onrender.com/api/inventory/${endpoint}`, {
                         protocol: protocol,
                         bloodGroup: itemName,
                         quantity: itemQuantity
@@ -74,7 +74,7 @@ function InventoryForm() {
         if (isChecked) {
             // Revoke exclusive access
             try {
-                const response = await axios.post('http://localhost:3001/grant-access', { threadId: null });
+                const response = await axios.post('https://mumbai-server.onrender.com/grant-access', { threadId: null });
                 setAccessMessage('Access revoked');
                 setIsChecked(!event.target.checked);
             } catch (error) {
@@ -84,11 +84,11 @@ function InventoryForm() {
             return;
         }
         try {
-            const accessCheckResponse = await axios.get('http://localhost:3001/check-access');
+            const accessCheckResponse = await axios.get('https://mumbai-server.onrender.com/check-access');
             console.log(accessCheckResponse.data.threadId);
             setThreadId(accessCheckResponse.data.threadId);
             if (accessCheckResponse.data.threadId === null || accessCheckResponse.data.threadId === localStorage.getItem('threadId')) {
-                const grantAccessResponse = await axios.post('http://localhost:3001/grant-access', { threadId: localStorage.getItem('threadId') });
+                const grantAccessResponse = await axios.post('https://mumbai-server.onrender.com/grant-access', { threadId: localStorage.getItem('threadId') });
                 setAccessMessage('Access granted');
                 setIsChecked(!event.target.checked);
             } else {
